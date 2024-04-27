@@ -3,4 +3,5 @@ project(WSEML)
 
 set(CMAKE_CXX_STANDARD 14)
 
+add_subdirectory(wseml_class_code)
 add_subdirectory(wseml_code)
