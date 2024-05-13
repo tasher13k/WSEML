@@ -1,5 +1,5 @@
-#include "../include/pointers.h"
-#include "../include/parser.h"
+#include "pointers.h"
+#include "parser.h"
 #include <sstream>
 
 

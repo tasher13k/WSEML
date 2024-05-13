@@ -10,6 +10,10 @@
 #include <nlohmann/json.hpp>
 #include "wseml7.hpp"
 
+#include "parser.h"
+#include "WSEML.h"
+
+
 using namespace std;
 using namespace nlohmann;
 
@@ -27,6 +31,10 @@ static json universe =
                 "режимы":{"...":{"взять":{"арг":0, "тело":[{"имя":"вернуть", "рез":1}]}, "положить":{"арг":0, "тело":[]}}}
                  }
         })"_json;
+
+//static WSEML universe_WSEML = parse(R"({`программа':[], `стек':[{`текблк':[{`вид':`двоичный', `адрес':0}], `текком':0, `данные':[]}], `таблицы':{`команды':{`...':{`арг':0, `тело':[]}}, `виды':{`...':{`арг':0, `тело':[[2], `порядок', {`имя':`вернуть', `рез':1}]}}, `режимы':{`...':{`взять':{`арг':0, `тело':[{`имя':`вернуть', `рез':1}]}, `положить':{`арг':0, `тело':[]}}} }})");
+
+//static WSEML universe_WSEML = parse("{""russ:$""}"); //, `стек':[{`текблк':[{`вид':`двоичный', `адрес':0}], `текком':0, `данные':[]}]}
 
 static int log_level;
 
@@ -50,6 +58,11 @@ void init(const string &progname)
         }
     }
 
+//    std::cout << "universe DUMP = " << universe.dump() << "\n";
+//
+/*    std::string s = pack(universe_WSEML);
+    std::cout << "\nWSEML_json = "<< s << "\n";*/
+
 
     ifstream st(progname);
     st>>universe["программа"];
@@ -60,6 +73,9 @@ void init_log(const string &logfilename, int loglevel)
 {
     log_level = loglevel;
     logst.open(logfilename);
+    if(logst.is_open()){
+        std::cout << "Log file = " << logfilename << "\n";
+    }
 }
 
 class Stop {}; // это исключение кидается после подготовки нового стекового кадра для выполнения блока команд тела реализованной команды для выхода из глубины вызовов встроенных функций
@@ -193,8 +209,12 @@ static void input()
     json x;
     cin>>x;
     push(x);
+    // cout<<"Отладочный universe 1 = " << universe << "\n"<<endl;
     next_cmd();
+    // cout<<"Отладочный universe 2 = " << universe << "\n"<<endl;
     clean();
+    // cout<<"Отладочный universe 3 = " << universe << "\n"<<endl;
+
 }
 
 static void output()

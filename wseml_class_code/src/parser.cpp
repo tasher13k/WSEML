@@ -1,8 +1,9 @@
 #include <vector>
 #include <unordered_map>
 #include <fstream>
-#include "../include/WSEML.h"
-#include "../include/parser.h"
+#include "WSEML.h"
+#include "parser.h"
+#include <iostream>
 
 namespace{
     WSEML parseHelper(const std::string& text, size_t& curPos);
@@ -11,10 +12,13 @@ namespace{
         size_t balance = 0;
         size_t pos = startPos;
         for (; (text[pos] != '\'' || balance != 0); ++pos) {
+            std::cout << "Pos = "<< pos << " ; text[pos] = " << text[pos] << "\n";
             if (text[pos] == '\\') pos+=2;
             if (text[pos] == '`') balance++;
             if (text[pos+1] == '\'') balance--;
         }
+        std::cout << "\n";
+
         return pos;
     }
     WSEML parseBytes (const std::string& text, size_t& curPos) {
@@ -114,6 +118,7 @@ namespace{
         return ListObj;
     }
     WSEML parseHelper(const std::string& text, size_t& curPos) {
+        auto sz = text.length();
         while (curPos < text.length()) {
             switch(text[curPos]) {
                 /// Null Object

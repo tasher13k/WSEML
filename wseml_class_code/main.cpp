@@ -1,5 +1,5 @@
-#include "include/WSEML.h"
-#include "include/parser.h"
+#include "WSEML.h"
+#include "parser.h"
 #include <iostream>
 
 

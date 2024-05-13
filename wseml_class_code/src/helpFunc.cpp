@@ -1,7 +1,7 @@
-#include "../include/WSEML.h"
-#include "../include/pointers.h"
-#include "../include/dllconfig.h"
-#include "../include/parser.h"
+#include "WSEML.h"
+#include "pointers.h"
+#include "dllconfig.h"
+#include "parser.h"
 #include <sstream>
 #include <gmpxx.h>
 

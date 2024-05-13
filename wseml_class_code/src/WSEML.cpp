@@ -1,7 +1,7 @@
-#include "../include/WSEML.h"
-#include "../include/pointers.h"
-#include "../include/parser.h"
-#include "../include/dllconfig.h"
+#include "WSEML.h"
+#include "pointers.h"
+#include "parser.h"
+#include "dllconfig.h"
 
 WSEML NULLOBJ = WSEML();
 WSEML EMPTYLIST = parse("{}");

@@ -1,6 +1,7 @@
 #ifndef POINTERS_H
 #define POINTERS_H
 #include "WSEML.h"
+
 WSEML calc(WSEML& expPtr);
 WSEML expand(WSEML& compPtr);
 WSEML reduce(WSEML& expPtr);

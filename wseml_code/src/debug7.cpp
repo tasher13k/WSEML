@@ -10,7 +10,7 @@ using nlohmann::json;
 int main(int argc, char *argv[]) {
     try {
         //"Использование: wseml имя_программы.w имя_журнала.l"
-        init_log(argv[2], 0);
+        init_log(argv[2], 15);
         init(argv[1]);
         debug();
         return EXIT_SUCCESS;
