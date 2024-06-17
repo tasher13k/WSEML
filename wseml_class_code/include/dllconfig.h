@@ -1,4 +1,6 @@
 #ifndef DLLCONFIG_H
 #define DLLCONFIG_H
-WSEML callFunc(const char* dllName, const char* funcName, const WSEML& Args);
+
+WSEML callFunc(const wchar_t *dllName, const wchar_t *funcName, const WSEML &Args);
+
 #endif

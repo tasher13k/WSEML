@@ -34,7 +34,7 @@ static json universe =
 
 //static WSEML universe_WSEML = parse(R"({`программа':[], `стек':[{`текблк':[{`вид':`двоичный', `адрес':0}], `текком':0, `данные':[]}], `таблицы':{`команды':{`...':{`арг':0, `тело':[]}}, `виды':{`...':{`арг':0, `тело':[[2], `порядок', {`имя':`вернуть', `рез':1}]}}, `режимы':{`...':{`взять':{`арг':0, `тело':[{`имя':`вернуть', `рез':1}]}, `положить':{`арг':0, `тело':[]}}} }})");
 
-//static WSEML universe_WSEML = parse("{""russ:$""}"); //, `стек':[{`текблк':[{`вид':`двоичный', `адрес':0}], `текком':0, `данные':[]}]}
+static WSEML universe_WSEML = parse(L"{""программа:$""}"); //, `стек':[{`текблк':[{`вид':`двоичный', `адрес':0}], `текком':0, `данные':[]}]}
 
 static int log_level;
 
@@ -58,10 +58,10 @@ void init(const string &progname)
         }
     }
 
-//    std::cout << "universe DUMP = " << universe.dump() << "\n";
-//
-/*    std::string s = pack(universe_WSEML);
-    std::cout << "\nWSEML_json = "<< s << "\n";*/
+    std::cout << "universe DUMP = " << universe.dump() << "\n";
+
+    std::wstring s = pack(universe_WSEML);
+    std::wcout << "\nWSEML_json = "<< s << "\n";
 
 
     ifstream st(progname);
@@ -209,11 +209,11 @@ static void input()
     json x;
     cin>>x;
     push(x);
-    // cout<<"Отладочный universe 1 = " << universe << "\n"<<endl;
+    cout<<"Отладочный universe 1 = " << universe << "\n"<<endl;
     next_cmd();
-    // cout<<"Отладочный universe 2 = " << universe << "\n"<<endl;
+    cout<<"Отладочный universe 2 = " << universe << "\n"<<endl;
     clean();
-    // cout<<"Отладочный universe 3 = " << universe << "\n"<<endl;
+    cout<<"Отладочный universe 3 = " << universe << "\n"<<endl;
 
 }
 
@@ -435,8 +435,8 @@ static void reorder()
     json tmp = json::array();
     for(int i = 0; i < m; ++i)
         tmp.push_back(pop());
-    for(int i = 0; i < order.size(); ++i)
-        push(tmp[order[i].get<int>()-1]);
+    for(const auto & i : order)
+        push(tmp[i.get<int>()-1]);
     next_cmd();
     clean();
 }
@@ -952,6 +952,7 @@ void debug()
                     break;
             case 2: cout<<"============================ выбранная команда =================================="<<endl;
                     cin>>s;
+                    new_frame("выполнить");
                     exec_cmd_by_name[s]();
                     cout<<universe<<endl;
                     cout<<"Число элементов в стеке="<<universe["стек"].size()<<endl;

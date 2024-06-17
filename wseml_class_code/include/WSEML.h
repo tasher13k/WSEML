@@ -19,7 +19,7 @@ class WSEML{
 public:
     WSEML();
     explicit WSEML(Object* obj);
-    WSEML(std::string str, WSEML& type = NULLOBJ, Pair* p = nullptr);
+    WSEML(std::wstring str, WSEML& type = NULLOBJ, Pair* p = nullptr);
     WSEML(std::list<Pair> l, WSEML& type = NULLOBJ, Pair* p = nullptr);
     WSEML(const WSEML& wseml);
     WSEML(WSEML&& wseml) noexcept;
@@ -59,16 +59,16 @@ private:
 
 class ByteString: public Object{
 public:
-    ByteString(std::string str, WSEML& type = NULLOBJ, Pair* p = nullptr);
+    ByteString(std::wstring str, WSEML& type = NULLOBJ, Pair* p = nullptr);
     ~ByteString() override;
     ByteString* clone() const override;
     Types typeInfo() const override;
-    std::string& get();
+    std::wstring& get();
     bool equal(Object* obj) override;
     bool equalTo(ByteString* obj) override;
     bool equalTo(List* obj) override;
 private:
-    std::string bytes;
+    std::wstring bytes;
 };
 
 class List: public Object{
@@ -84,12 +84,12 @@ public:
     bool equalTo(ByteString* obj) override;
     bool equalTo(List* obj) override;
     WSEML& find(const WSEML& key);
-    WSEML& find(const std::string& key);
+    WSEML& find(const std::wstring& key);
     void erase(const WSEML& key);
-    void erase(const std::string& key);
-    WSEML append(WSEML* listPtr, WSEML data, WSEML key = NULLOBJ, WSEML keyRole = NULLOBJ, WSEML dataRole = NULLOBJ);
-    WSEML insert(size_t index, WSEML* listPtr, WSEML data, WSEML key = NULLOBJ, WSEML keyRole = NULLOBJ, WSEML dataRole = NULLOBJ);
-    WSEML append_front(WSEML* listPtr, WSEML data, WSEML key = NULLOBJ, WSEML keyRole = NULLOBJ, WSEML dataRole = NULLOBJ);
+    void erase(const std::wstring& key);
+    WSEML append(WSEML* listPtr, const WSEML& data, WSEML key = NULLOBJ, const WSEML& keyRole = NULLOBJ, const WSEML& dataRole = NULLOBJ);
+    WSEML insert(size_t index, WSEML* listPtr, const WSEML& data, WSEML key = NULLOBJ, const WSEML& keyRole = NULLOBJ, const WSEML& dataRole = NULLOBJ);
+    WSEML append_front(WSEML* listPtr, const WSEML& data, WSEML key = NULLOBJ, const WSEML& keyRole = NULLOBJ, const WSEML& dataRole = NULLOBJ);
     WSEML& front();
     WSEML& back();
 private:

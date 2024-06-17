@@ -1,13 +1,13 @@
 #ifndef TERM_PAPER_HELPFUNC_H
 #define TERM_PAPER_HELPFUNC_H
 
-std::string periodToFrac(std::string& s);
-bool isNum(std::string& s);
+std::wstring periodToFrac(std::wstring& s);
+bool isNum(std::wstring& s);
 WSEML* extract(WSEML& ref);
 
-bool compare(WSEML* O1, WSEML* O2, const std::string& type);
-WSEML createEquiv(WSEML* stack, WSEML* wfrm, WSEML* frm, const std::string& cmdName, const std::string& cmdInd);
-void changeCommand(List* stack, const WSEML& equivKey, const std::string& newCmdInd);
+bool compare(WSEML* O1, WSEML* O2, const std::wstring& type);
+WSEML createEquiv(WSEML* stack, WSEML* wfrm, WSEML* frm, const std::wstring& cmdName, const std::wstring& cmdInd);
+void changeCommand(List* stack, const WSEML& equivKey, const std::wstring& newCmdInd);
 void clear(List* stack, List* data, WSEML* wfrm, const WSEML& equivKey, const WSEML& DataKeys);
 
 WSEML getLength(const WSEML& Args);

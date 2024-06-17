@@ -8,6 +8,6 @@ WSEML reduce(WSEML& expPtr);
 void to_i(WSEML& expPtr);
 void to_k(WSEML& expPtr);
 WSEML* extractObj(WSEML& compPtr);
-std::string getAddrStr(const WSEML* ptr);
+std::wstring getAddrStr(const WSEML* ptr);
 WSEML makePtr(const WSEML& object);
 #endif

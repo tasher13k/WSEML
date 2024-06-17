@@ -1,4 +1,4 @@
-add_executable(wseml_code src/wseml7.cpp src/main7.cpp) # не забыть src/debug7.cpp и src/examples.cpp
+add_executable(wseml_code src/wseml7.cpp src/debug7.cpp ) # не забыть src/debug7.cpp и src/examples.cpp
 
 include(FetchContent)
 FetchContent_Declare(json URL https://github.com/nlohmann/json/releases/download/v3.11.3/json.tar.xz)
