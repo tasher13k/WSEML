@@ -3,7 +3,7 @@
 #include <iostream>
 
 
-int main(){
+int main() {
 //    WSEML stck = parse(L"{"
 //                     "1:$[type:`I', R:$, L:$[type:d, 1:$[1:$[t:r]ps, 2:$[t:k, k:data]ps]ptr]ref, RK:$, K:$[type:i, 1:interrupt_tmpPtr]ref, RD:$, D:$[type:i, 1:$[1:$[t:r]ps, 2:$[t:k, k:stck]ps, 3:$[t:k, k:$]ps, 4:$[t:k, k:info]ps, 5:$[t:k, k:wfrm]ps, 6:$[t:i, i:0]ps]ptr]ref, I:$, N:$]bc, "
 //                     "2:$[type:`I', R:$, L:$[type:d, 1:$[1:$[t:r]ps, 2:$[t:k, k:data]ps]ptr]ref, RK:$, K:$[type:i, 1:interrupt_helpPtr]ref, RD:$, D:$[type:i, 1:$[1:$[t:r]ps, 2:$[t:k, k:stck]ps, 3:$[t:k, k:$]ps, 4:$[t:k, k:info]ps, 5:$[t:k, k:wfrm]ps, 6:$[t:i, i:0]ps]ptr]ref, I:$, N:$]bc, "
@@ -69,7 +69,7 @@ int main(){
 //                     "62:$[type:`D', R:$[type:d, 1:$[1:$[t:r]ps, 2:$[t:k, k:data]ps, 3:$[t:k, k:interrupt_bool]ps]ptr]ref, N:$]bc"
 //                     "}");
     //WSEML stck = parse(L"{" "1:$[type:`I', R:$, L:$[type:d, 1:$[1:$[t:r]ps, 2:$[t:k, k:data]ps]ptr]ref, RK:$, K:$[type:i, 1:interrupt_tmpPtr]ref, RD:$, D:$[type:i, 1:$[1:$[t:r]ps, 2:$[t:k, k:stck]ps, 3:$[t:k, k:$]ps, 4:$[t:k, k:info]ps, 5:$[t:k, k:wfrm]ps, 6:$[t:i, i:0]ps]ptr]ref, I:$, N:$]bc " "}");
-    WSEML stck = parse(L"{""rus:[строка]""}");
+    WSEML stck = parse(L"{rus:[строка]}");
     std::wstring s = pack(stck);
     std::wcout << s;
     return 0;

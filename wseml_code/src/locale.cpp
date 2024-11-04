@@ -1,10 +1,9 @@
 #include <iostream>
 #include <clocale>
 
-int setup_locale()
-{
+int setup_locale() {
     std::setlocale(LC_ALL, "");
-    std::locale loc("ru_RU.UTF-8");	// Указываем локализацию
+    std::locale loc("ru_RU.UTF-8");    // Указываем локализацию
     std::locale::global(loc);
     std::cout.imbue(loc);
     std::cerr.imbue(loc);

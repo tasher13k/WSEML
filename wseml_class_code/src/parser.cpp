@@ -60,8 +60,8 @@ namespace {
     }
 
     WSEML parseList(const std::wstring &text, size_t &curPos) {
-        std::list<Pair> ll;
-        WSEML ListObj = WSEML(ll);
+        std::list<Pair> l;
+        WSEML ListObj = WSEML(l);
         std::list<Pair> &curList = dynamic_cast<List *>(ListObj.getObj())->get();
         while (text[curPos] != '}' && text[curPos] != ']') {
             if (text[curPos] == ',') {
@@ -141,7 +141,6 @@ namespace {
     }
 
     WSEML parseHelper(const std::wstring &text, size_t &curPos) {
-        auto sz = text.length();
         while (curPos < text.length()) {
             switch (text[curPos]) {
                 /// Null Object
@@ -151,12 +150,11 @@ namespace {
                 }
                     /// String
                 case '`': {
-                    std::locale system("");
-                    std::locale::global(system);// for C and C++ where synced with stdio
+
                     size_t endPos = findEnd(text, curPos);
                     std::wstring str = text.substr(curPos + 1, endPos - curPos - 1);
 
-                    std::wcout << "Curr locale = " << setlocale(LC_ALL, NULL) << "\nIMPORTANT str = " << str << "\n";
+                    //std::wcout << "Curr locale = " << setlocale(LC_ALL, NULL) << "\nIMPORTANT str = " << text << "\n";
 
                     curPos = endPos + 1;
                     return {str};
@@ -225,15 +223,9 @@ namespace {
 //                    }
                     size_t startPos = curPos;
                     std::wstring controlChar = L" {}[],:";
-                    auto prov = L"п";
-                    while (curPos < text.length() && (controlChar.find(text[curPos]) == std::wstring::npos)) {
-                        std::wcout << "Очередной символ = " << text[curPos] << "\n";
-                        if (text[curPos] == prov[0]) {
-                            std::cout << "it's п!\n";
-                        }
+                    while (curPos < text.length() && (controlChar.find(text[curPos]) == std::string::npos))
                         curPos++;
-                    }
-                    if (controlChar.find(text[curPos]) == std::wstring::npos) curPos--;
+                    if (controlChar.find(text[curPos]) == std::string::npos) curPos--;
                     std::wstring str = text.substr(startPos, curPos - startPos);
                     return {str};
                 }
@@ -275,7 +267,9 @@ namespace {
 }
 
 WSEML parse(const std::wstring &text) {
-    //setlocale(LC_ALL, "ru_RU.UTF-8");
+    // нужно для инициализации консоли для вывода кириллицы
+    setlocale(LC_ALL, "ru_RU.UTF-8");
+    std::wcout << " ";
 
     size_t curPos = 0;
     return parseHelper(text, curPos);

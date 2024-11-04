@@ -1,5 +1,5 @@
 add_executable(wseml_code src/wseml7.cpp src/debug7.cpp
-        ) #  src/locale.cpp не забыть src/debug7.cpp и src/examples.cpp
+) #  src/locale.cpp не забыть src/debug7.cpp и src/examples.cpp
 
 
 include(FetchContent)
@@ -11,8 +11,3 @@ target_include_directories(wseml_code PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/inclu
 message("NEED_LIB_WSCODE = ${NEED_LIB_W}")
 target_link_libraries(wseml_code PRIVATE nlohmann_json::nlohmann_json)
 target_link_libraries(wseml_code PRIVATE wseml_class_code)
-
-#get_property(dirs TARGET wseml_code PROPERTY INCLUDE_DIRECTORIES)
-#foreach(dir ${dirs})
-#    message(STATUS "dir='${dir}'")
-#endforeach()
