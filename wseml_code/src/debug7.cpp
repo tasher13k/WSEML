@@ -9,6 +9,12 @@ using namespace std;
 using nlohmann::json;
 
 int main(int argc, char *argv[]) {
+    std::locale system("");
+    std::locale::global(system);
+
+    wstring str = L"hello, world. привет, МКС";
+    wcout << str << endl;
+    wcout << str.c_str() << endl;
     try {
         //"Использование: wseml имя_программы.w имя_журнала.l"
         init_log(argv[2], 15);

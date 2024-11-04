@@ -60,8 +60,8 @@ namespace {
     }
 
     WSEML parseList(const std::wstring &text, size_t &curPos) {
-        std::list<Pair> l;
-        WSEML ListObj = WSEML(l);
+        std::list<Pair> ll;
+        WSEML ListObj = WSEML(ll);
         std::list<Pair> &curList = dynamic_cast<List *>(ListObj.getObj())->get();
         while (text[curPos] != '}' && text[curPos] != ']') {
             if (text[curPos] == ',') {
@@ -151,8 +151,13 @@ namespace {
                 }
                     /// String
                 case '`': {
+                    std::locale system("");
+                    std::locale::global(system);// for C and C++ where synced with stdio
                     size_t endPos = findEnd(text, curPos);
                     std::wstring str = text.substr(curPos + 1, endPos - curPos - 1);
+
+                    std::wcout << "Curr locale = " << setlocale(LC_ALL, NULL) << "\nIMPORTANT str = " << str << "\n";
+
                     curPos = endPos + 1;
                     return {str};
                 }
@@ -270,6 +275,8 @@ namespace {
 }
 
 WSEML parse(const std::wstring &text) {
+    //setlocale(LC_ALL, "ru_RU.UTF-8");
+
     size_t curPos = 0;
     return parseHelper(text, curPos);
 }
