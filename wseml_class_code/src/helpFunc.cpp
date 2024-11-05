@@ -8,9 +8,9 @@
 #include "stringconverter.h"
 
 std::wstring periodToFrac(std::wstring &s) {
-    size_t dotPos = s.find(L".");
+    size_t dotPos = s.find(L'.');
     size_t start = s.find(L"(L");
-    size_t end = s.find(L")");
+    size_t end = s.find(L')');
     std::wstring real = s.substr(0, start);
     size_t l = start - dotPos - 1;
     size_t r = end - dotPos - 2;
@@ -84,7 +84,7 @@ WSEML getLength(const WSEML &Args) {
     WSEML *list;
     list = extract(args->find(L"list"));
     size_t length = dynamic_cast<List *>(list->getObj())->get().size();
-    return WSEML(std::to_wstring(length));
+    return {std::to_wstring(length)};
 }
 
 WSEML getKeyByData(const WSEML &Args) {
@@ -120,7 +120,7 @@ WSEML insertPair(const WSEML &Args) {
         listList->insert(ind, list, *pairData, pairData->getPair()->getKey(), pairData->getPair()->getKeyRole(),
                          pairData->getPair()->getData());
     }
-    return WSEML();
+    return {};
 }
 
 WSEML isKeyExists(const WSEML &Args) {
@@ -138,7 +138,7 @@ WSEML isKeyExists(const WSEML &Args) {
         }
         it++;
     }
-    return WSEML(L"res");
+    return {L"res"};
 }
 
 bool compare(WSEML *O1, WSEML *O2, const std::wstring &type) {
@@ -229,8 +229,8 @@ void clear(List *stack, List *data, WSEML *wfrm, const WSEML &equivKey, const WS
         wfrmList->append_front(wfrm, it->getData(), it->getKey(), it->getKeyRole(), it->getDataRole());
     }
     stack->erase(equivKey);
-    for (auto it = keys->get().begin(); it != keys->get().end(); ++it)
-        data->erase(it->getData());
+    for (auto &it: keys->get())
+        data->erase(it.getData());
 }
 
 WSEML safeSum(const WSEML &Args) { /// Args = {O1:ref, O2:ref, res:ref}

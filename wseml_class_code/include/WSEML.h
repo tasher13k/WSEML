@@ -26,13 +26,13 @@ public:
     ~WSEML();
     WSEML& operator=(const WSEML& wseml);
     WSEML& operator=(WSEML&& wseml) noexcept;
-    bool operator==(const WSEML& wseml);
-    bool operator!=(const WSEML& wseml);
-    void setType(const WSEML& newType);
+    bool operator==(const WSEML& wseml) const;
+    bool operator!=(const WSEML& wseml) const;
+    void setType(const WSEML& newType) const;
     Types typeInfo() const;
-    WSEML& getType();
-    WSEML* getList();
-    Pair* getPair();
+    WSEML& getType() const;
+    WSEML* getList() const;
+    Pair* getPair() const;
     Object* getObj() const;
     bool one_step();
 private:

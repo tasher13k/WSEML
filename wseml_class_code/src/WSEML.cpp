@@ -89,11 +89,11 @@ bool equal(const WSEML &first, const WSEML &second) {
     else return false;
 }
 
-bool WSEML::operator==(const WSEML &wseml) {
+bool WSEML::operator==(const WSEML &wseml) const {
     return equal(*this, wseml);
 }
 
-bool WSEML::operator!=(const WSEML &wseml) {
+bool WSEML::operator!=(const WSEML &wseml) const {
     return !equal(*this, wseml);
 }
 
@@ -101,7 +101,7 @@ Object *WSEML::getObj() const {
     return obj;
 }
 
-void WSEML::setType(const WSEML &newType) {
+void WSEML::setType(const WSEML &newType) const {
     this->getObj()->setType(newType);
 }
 
@@ -109,15 +109,15 @@ Types WSEML::typeInfo() const {
     return this->getObj()->typeInfo();
 }
 
-WSEML &WSEML::getType() {
+WSEML &WSEML::getType() const {
     return this->getObj()->getType();
 }
 
-WSEML *WSEML::getList() {
+WSEML *WSEML::getList() const {
     return (this->getObj()->getPair() != nullptr) ? this->getObj()->getPair()->getList() : nullptr;
 }
 
-Pair *WSEML::getPair() {
+Pair *WSEML::getPair() const {
     return this->getObj()->getPair();
 }
 

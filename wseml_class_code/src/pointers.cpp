@@ -124,7 +124,7 @@ WSEML expand(WSEML &compPtr) {
     WSEML expPtr = WSEML();
     auto listIt = compList.begin();
     unsigned long long int addr = std::stoi(dynamic_cast<ByteString *>(listIt->getData().getObj())->get(), nullptr, 16);
-    WSEML *curObj = (WSEML *) addr;
+    auto *curObj = (WSEML *) addr;
     WSEML *upperListPtr = curObj->getList();
     int countPS = 0;
     listIt++;
@@ -369,7 +369,7 @@ WSEML reduce(WSEML &expPtr) {
                     curObj = upperListPtr;
                     upperListPtr = (curObj->getObj()->getPair() != nullptr) ? curObj->getList() : nullptr;
                 }
-                psStack.push_back(L"r");
+                psStack.emplace_back(L"r");
                 objStack.push_back(curObj);
                 reducedList.emplace_back(&reduced, listIt->getKey(), listIt->getData());
             }

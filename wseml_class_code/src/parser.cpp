@@ -281,7 +281,7 @@ std::wstring pack(const WSEML &wseml) {
     if (wseml.typeInfo() == StringType) {
         wsemlString = dynamic_cast<ByteString *>(wseml.getObj())->get();
         bool isBytes = false;
-        for (char c: wsemlString) {
+        for (auto c: wsemlString) {
             if (c < 32) {
                 isBytes = true;
                 break;
@@ -303,7 +303,7 @@ std::wstring pack(const WSEML &wseml) {
                     keyStr.pop_back();
                     keyStr.erase(0, 1);
                 }
-                keyStr = keyRoleStr + L"[" + keyStr + L"]" + keyTypeStr;
+                keyStr = keyRoleStr.append(L"[") + keyStr.append(L"]") + keyTypeStr;
             }
             std::wstring dataStr = pack(it->getData());
             if (dataStr != L"$" && (!equal(it->getDataRole(), NULLOBJ) || !equal(it->getData().getType(), NULLOBJ))) {
